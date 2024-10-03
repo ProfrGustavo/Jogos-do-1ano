@@ -52,7 +52,7 @@
 
       function setup() {
         // Cria um canvas onde o iframe aparecerá
-        //createCanvas(800, 400).parent(document.querySelector('.box')); // Coloca o canvas dentro da box
+        //createCanvas(800, 400).parent(document.querySelector('.box')); // cria um canva para ezibir textos
         createElement("h2", "Recomendador de Jogos").parent(document.querySelector('.box'));
         createSpan("Sua idade:").parent(document.querySelector('.box'));
         campoIdade = createInput("5").parent(document.querySelector('.box'));
@@ -78,18 +78,18 @@
       }
 
       function geraRecomendacao(idade) {
-        // Verifica se a idade é 15 para exibir o jogo
-        if (idade == 15) {
-          let linkJogo = "https://scratch.mit.edu/projects/65710744/embed"; // Jogo apenas para idade 15
-          iframeElement.attribute("src", linkJogo); // Carrega o jogo no iframe
-        } else {
-          iframeElement.attribute("src", ""); // Limpa o iframe
-          fill(0); // Define a cor do texto
-          textSize(24); // Define o tamanho da fonte
-          textAlign(CENTER, CENTER); // Centraliza o texto
-          text("Espaço para colocar outro iframe", width / 2, height / 2); // Exibe o texto no canvas
-        }
-      }
+  if (idade == 15) {
+    let linkJogo = "https://scratch.mit.edu/projects/65710744/embed";
+    iframeElement.attribute("src", linkJogo);
+  } else {
+    iframeElement.attribute("src", "");
+    fill(0);
+    textSize(24);
+    textAlign(CENTER, CENTER);
+    text("Em construção", width / 2, height / 2);
+  }
+}
+
     </script>
   </div>
 </body>
