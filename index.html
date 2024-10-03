@@ -28,16 +28,18 @@
       color: #333;
     }
 
-    canvas {
-      display: block;
-      margin: 20px auto;
-    }
-
-    /* Estilo opcional para o iframe */
     iframe {
       margin-top: 20px;
       border: 2px solid #4c0073;
       border-radius: 10px;
+    }
+
+    /* Estilo para a div de mensagens */
+    .message-box {
+      margin-top: 20px;
+      font-size: 20px;
+      color: #4c0073;
+      text-align: center;
     }
   </style>
 </head>
@@ -48,11 +50,11 @@
       let campoIdade;
       let campoFantasia;
       let campoAventura;
-      let iframeElement; // Variável para o iframe
+      let iframeElement;
+      let messageBox; // Variável para a div de mensagem
 
       function setup() {
-        // Cria um canvas onde o iframe aparecerá
-        //createCanvas(800, 400).parent(document.querySelector('.box')); // cria um canva para ezibir textos
+        // Configura os inputs
         createElement("h2", "Recomendador de Jogos").parent(document.querySelector('.box'));
         createSpan("Sua idade:").parent(document.querySelector('.box'));
         campoIdade = createInput("5").parent(document.querySelector('.box'));
@@ -62,34 +64,34 @@
         campoAventura = createCheckbox("Gosta de aventura?").parent(document.querySelector('.box'));
 
         // Criando o iframe onde o jogo será exibido
-        iframeElement = createElement('iframe'); 
+        iframeElement = createElement('iframe');
         iframeElement.attribute("allowtransparency", "true");
         iframeElement.attribute("frameborder", "0");
         iframeElement.attribute("scrolling", "no");
         iframeElement.attribute("allowfullscreen", "true");
         iframeElement.size(485, 402);
         iframeElement.parent(document.querySelector('.box'));
+
+        // Criando uma div para exibir mensagens
+        messageBox = createDiv().parent(document.querySelector('.box'));
+        messageBox.class('message-box'); // Estilo para a div de mensagem
       }
 
       function draw() {
-        background("white"); // Limpa o canvas
         let idade = campoIdade.value(); // Pega a idade do input
         geraRecomendacao(idade); // Chama a função que decide o jogo ou mensagem
       }
 
       function geraRecomendacao(idade) {
-  if (idade == 15) {
-    let linkJogo = "https://scratch.mit.edu/projects/65710744/embed";
-    iframeElement.attribute("src", linkJogo);
-  } else {
-    iframeElement.attribute("src", "");
-    fill(0);
-    textSize(24);
-    textAlign(CENTER, CENTER);
-    text("Em construção", width / 2, height / 2);
-  }
-}
-
+        if (idade == 15) {
+          let linkJogo = "https://scratch.mit.edu/projects/65710744/embed";
+          iframeElement.attribute("src", linkJogo);
+          messageBox.html("Bom jogo"); // Exibe a mensagem "Bom jogo"
+        } else {
+          iframeElement.attribute("src", ""); // Limpa o iframe
+          messageBox.html("Em construção"); // Exibe a mensagem "Em construção"
+        }
+      }
     </script>
   </div>
 </body>
