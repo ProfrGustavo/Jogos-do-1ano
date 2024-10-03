@@ -7,7 +7,6 @@
   <!-- Importando a biblioteca p5.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
   <style>
-    /* Estilo da box */
     .box {
       width: 850px;
       margin: 20px auto;
@@ -33,6 +32,13 @@
       display: block;
       margin: 20px auto;
     }
+
+    /* Estilo opcional para o iframe */
+    iframe {
+      margin-top: 20px;
+      border: 2px solid #4c0073;
+      border-radius: 10px;
+    }
   </style>
 </head>
 <body>
@@ -42,6 +48,7 @@
       let campoIdade;
       let campoFantasia;
       let campoAventura;
+      let iframeElement; // Variável para o iframe
 
       function setup() {
         createCanvas(800, 400).parent(document.querySelector('.box')); // Coloca o canvas dentro da box
@@ -52,6 +59,14 @@
         campoFantasia = createCheckbox("Gosta de fantasia?").parent(document.querySelector('.box'));
         createElement("br").parent(document.querySelector('.box')); // Quebra de linha
         campoAventura = createCheckbox("Gosta de aventura?").parent(document.querySelector('.box'));
+
+        iframeElement = createElement('iframe'); // Cria o iframe
+        iframeElement.attribute("allowtransparency", "true");
+        iframeElement.attribute("frameborder", "0");
+        iframeElement.attribute("scrolling", "no");
+        iframeElement.attribute("allowfullscreen", "true");
+        iframeElement.size(485, 402);
+        iframeElement.parent(document.querySelector('.box'));
       }
 
       function draw() {
@@ -59,40 +74,39 @@
         let idade = campoIdade.value();
         let gostaDeFantasia = campoFantasia.checked();
         let gostaDeAventura = campoAventura.checked();
-        let recomendacao = geraRecomendacao(idade, gostaDeFantasia, gostaDeAventura);
-
-        fill(color(76, 0, 115));
-        textAlign(CENTER, CENTER);
-        textSize(38);
-        text(recomendacao, width / 2, height / 2);
+        geraRecomendacao(idade, gostaDeFantasia, gostaDeAventura);
       }
 
       function geraRecomendacao(idade, gostaDeFantasia, gostaDeAventura) {
+        let linkJogo;
         if (idade >= 10) {
           if (idade >= 14) {
-            return "O menino que descobriu o vento";
+            linkJogo = "https://scratch.mit.edu/projects/65710744/embed"; // Jogo para 14+
           } else {
             if (idade >= 12) {
-              if(gostaDeFantasia || gostaDeAventura) {
-                return "Homem aranha: no aranhaverso";          
-              } else{
-                return "Ladrões de bicicleta";
+              if (gostaDeFantasia || gostaDeAventura) {
+                linkJogo = "https://scratch.mit.edu/projects/65710744/embed"; // Jogo para fantasia ou aventura
+              } else {
+                linkJogo = "https://scratch.mit.edu/projects/65710744/embed"; // Outro jogo
               }
             } else {
               if (gostaDeFantasia) {
-                return "As aventuras de pi";
+                linkJogo = "https://scratch.mit.edu/projects/65710744/embed"; // Jogo de fantasia
               } else {
-                return "Depois da chuva";
+                linkJogo = "https://scratch.mit.edu/projects/65710744/embed"; // Outro
               }
             }
           }
         } else {
           if (gostaDeFantasia) {
-            return "A viagem de chihiro";
+            linkJogo = "https://scratch.mit.edu/projects/65710744/embed"; // Jogo de fantasia para menores de 10
           } else {
-            return "O feitiço do tempo";
+            linkJogo = "https://scratch.mit.edu/projects/65710744/embed"; // Outro jogo para menores de 10
           }
         }
+
+        // Atualiza o iframe com o link do jogo
+        iframeElement.attribute("src", linkJogo);
       }
     </script>
   </div>
