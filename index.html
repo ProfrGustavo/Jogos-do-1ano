@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Recomendador de Filmes</title>
+  <title>Recomendador de Jogos</title>
   <!-- Importando a biblioteca p5.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
   <style>
@@ -51,8 +51,9 @@
       let iframeElement; // Variável para o iframe
 
       function setup() {
+        // Cria um canvas onde o iframe aparecerá
         createCanvas(800, 400).parent(document.querySelector('.box')); // Coloca o canvas dentro da box
-        createElement("h2", "Recomendador de filmes").parent(document.querySelector('.box'));
+        createElement("h2", "Recomendador de Jogos").parent(document.querySelector('.box'));
         createSpan("Sua idade:").parent(document.querySelector('.box'));
         campoIdade = createInput("5").parent(document.querySelector('.box'));
         createElement("br").parent(document.querySelector('.box')); // Quebra de linha
@@ -60,7 +61,8 @@
         createElement("br").parent(document.querySelector('.box')); // Quebra de linha
         campoAventura = createCheckbox("Gosta de aventura?").parent(document.querySelector('.box'));
 
-        iframeElement = createElement('iframe'); // Cria o iframe
+        // Criando o iframe onde o jogo será exibido
+        iframeElement = createElement('iframe'); 
         iframeElement.attribute("allowtransparency", "true");
         iframeElement.attribute("frameborder", "0");
         iframeElement.attribute("scrolling", "no");
@@ -70,43 +72,23 @@
       }
 
       function draw() {
-        background("white");
-        let idade = campoIdade.value();
-        let gostaDeFantasia = campoFantasia.checked();
-        let gostaDeAventura = campoAventura.checked();
-        geraRecomendacao(idade, gostaDeFantasia, gostaDeAventura);
+        background("white"); // Limpa o canvas
+        let idade = campoIdade.value(); // Pega a idade do input
+        geraRecomendacao(idade); // Chama a função que decide o jogo ou mensagem
       }
 
-      function geraRecomendacao(idade, gostaDeFantasia, gostaDeAventura) {
-        let linkJogo;
-        if (idade >= 10) {
-          if (idade >= 14) {
-            linkJogo = "https://scratch.mit.edu/projects/65710744/embed"; // Jogo para 14+
-          } else {
-            if (idade >= 12) {
-              if (gostaDeFantasia || gostaDeAventura) {
-                linkJogo = "https://scratch.mit.edu/projects/65710744/embed"; // Jogo para fantasia ou aventura
-              } else {
-                linkJogo = "https://scratch.mit.edu/projects/65710744/embed"; // Outro jogo
-              }
-            } else {
-              if (gostaDeFantasia) {
-                linkJogo = "https://scratch.mit.edu/projects/65710744/embed"; // Jogo de fantasia
-              } else {
-                linkJogo = "https://scratch.mit.edu/projects/65710744/embed"; // Outro
-              }
-            }
-          }
+      function geraRecomendacao(idade) {
+        // Verifica se a idade é 15 para exibir o jogo
+        if (idade == 15) {
+          let linkJogo = "https://scratch.mit.edu/projects/65710744/embed"; // Jogo apenas para idade 15
+          iframeElement.attribute("src", linkJogo); // Carrega o jogo no iframe
         } else {
-          if (gostaDeFantasia) {
-            linkJogo = "https://scratch.mit.edu/projects/65710744/embed"; // Jogo de fantasia para menores de 10
-          } else {
-            linkJogo = "https://scratch.mit.edu/projects/65710744/embed"; // Outro jogo para menores de 10
-          }
+          iframeElement.attribute("src", ""); // Limpa o iframe
+          fill(0); // Define a cor do texto
+          textSize(24); // Define o tamanho da fonte
+          textAlign(CENTER, CENTER); // Centraliza o texto
+          text("Espaço para colocar outro iframe", width / 2, height / 2); // Exibe o texto no canvas
         }
-
-        // Atualiza o iframe com o link do jogo
-        iframeElement.attribute("src", linkJogo);
       }
     </script>
   </div>
