@@ -6,62 +6,95 @@
   <title>Recomendador de Filmes</title>
   <!-- Importando a biblioteca p5.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+  <style>
+    /* Estilo da box */
+    .box {
+      width: 850px;
+      margin: 20px auto;
+      padding: 20px;
+      border: 2px solid #4c0073;
+      border-radius: 10px;
+      background-color: #f4f4f4;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+      text-align: center;
+    }
+
+    h2 {
+      color: #4c0073;
+    }
+
+    span, input, label {
+      font-size: 18px;
+      margin: 10px;
+      color: #333;
+    }
+
+    canvas {
+      display: block;
+      margin: 20px auto;
+    }
+  </style>
 </head>
 <body>
-  <script>
-    let campoIdade;
-    let campoFantasia;
-    let campoAventura;
+  <!-- Div box para o conteúdo -->
+  <div class="box">
+    <script>
+      let campoIdade;
+      let campoFantasia;
+      let campoAventura;
 
-    function setup() {
-      createCanvas(800, 400);
-      createElement("h2", "Recomendador de filmes");
-      createSpan("Sua idade:");
-      campoIdade = createInput("5");
-      campoFantasia = createCheckbox("Gosta de fantasia?");
-      campoAventura = createCheckbox("Gosta de aventura?");
-    }
+      function setup() {
+        createCanvas(800, 400).parent(document.querySelector('.box')); // Coloca o canvas dentro da box
+        createElement("h2", "Recomendador de filmes").parent(document.querySelector('.box'));
+        createSpan("Sua idade:").parent(document.querySelector('.box'));
+        campoIdade = createInput("5").parent(document.querySelector('.box'));
+        createElement("br").parent(document.querySelector('.box')); // Quebra de linha
+        campoFantasia = createCheckbox("Gosta de fantasia?").parent(document.querySelector('.box'));
+        createElement("br").parent(document.querySelector('.box')); // Quebra de linha
+        campoAventura = createCheckbox("Gosta de aventura?").parent(document.querySelector('.box'));
+      }
 
-    function draw() {
-      background("white");
-      let idade = campoIdade.value();
-      let gostaDeFantasia = campoFantasia.checked();
-      let gostaDeAventura = campoAventura.checked();
-      let recomendacao = geraRecomendacao(idade, gostaDeFantasia, gostaDeAventura);
+      function draw() {
+        background("white");
+        let idade = campoIdade.value();
+        let gostaDeFantasia = campoFantasia.checked();
+        let gostaDeAventura = campoAventura.checked();
+        let recomendacao = geraRecomendacao(idade, gostaDeFantasia, gostaDeAventura);
 
-      fill(color(76, 0, 115));
-      textAlign(CENTER, CENTER);
-      textSize(38);
-      text(recomendacao, width / 2, height / 2);
-    }
+        fill(color(76, 0, 115));
+        textAlign(CENTER, CENTER);
+        textSize(38);
+        text(recomendacao, width / 2, height / 2);
+      }
 
-    function geraRecomendacao(idade, gostaDeFantasia, gostaDeAventura) {
-      if (idade >= 10) {
-        if (idade >= 14) {
-          return "O menino que descobriu o vento";
-        } else {
-          if (idade >= 12) {
-            if(gostaDeFantasia || gostaDeAventura) {
-              return "Homem aranha: no aranhaverso";          
-            } else{
-              return "Ladrões de bicicleta";
-            }
+      function geraRecomendacao(idade, gostaDeFantasia, gostaDeAventura) {
+        if (idade >= 10) {
+          if (idade >= 14) {
+            return "O menino que descobriu o vento";
           } else {
-            if (gostaDeFantasia) {
-              return "As aventuras de pi";
+            if (idade >= 12) {
+              if(gostaDeFantasia || gostaDeAventura) {
+                return "Homem aranha: no aranhaverso";          
+              } else{
+                return "Ladrões de bicicleta";
+              }
             } else {
-              return "Depois da chuva";
+              if (gostaDeFantasia) {
+                return "As aventuras de pi";
+              } else {
+                return "Depois da chuva";
+              }
             }
           }
-        }
-      } else {
-        if (gostaDeFantasia) {
-          return "A viagem de chihiro";
         } else {
-          return "O feitiço do tempo";
+          if (gostaDeFantasia) {
+            return "A viagem de chihiro";
+          } else {
+            return "O feitiço do tempo";
+          }
         }
       }
-    }
-  </script>
+    </script>
+  </div>
 </body>
 </html>
