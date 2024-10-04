@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Recomendador de Jogos</title>
-  <!-- Importando a biblioteca p5.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
   <style>
     .box {
@@ -34,106 +33,61 @@
       border-radius: 10px;
     }
 
-    /* Estilo para a div de mensagens */
-    .message-box {
-      margin-top: 20px;
-      font-size: 20px;
-      color: #4c0073;
-      text-align: center;
+    .hidden {
+      display: none;
     }
 
-    /* Botão reset */
-    button {
-      margin-top: 20px;
-      padding: 10px 20px;
-      background-color: #4c0073;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      font-size: 18px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background-color: #6a008f;
-    }
   </style>
 </head>
 <body>
-  <!-- Div box para o conteúdo -->
   <div class="box">
+    <h2>Recomendador de Jogos</h2>
+    <span>Sua idade:</span>
+    <input id="idadeInput" type="number" value="5" />
+    <br>
+    <button id="resetButton">Reset</button>
+
+    <!-- Iframe para exibir o jogo -->
+    <iframe id="gameIframe" width="485" height="402" allowtransparency="true" frameborder="0" scrolling="no" allowfullscreen></iframe>
+    <p id="statusMessage">Em construção</p>
+
     <script>
-      let campoIdade;
-      let campoFantasia;
-      let campoAventura;
-      let iframeElement;
-      let messageBox; // Variável para a div de mensagem
-      let jogoCarregado = false; // Controle se o jogo já foi carregado
-
-      function setup() {
-        // Configura os inputs
-        createElement("h2", "Recomendador de Jogos").parent(document.querySelector('.box'));
-        createSpan("Sua idade:").parent(document.querySelector('.box'));
-        campoIdade = createInput("5").parent(document.querySelector('.box'));
-        createElement("br").parent(document.querySelector('.box')); // Quebra de linha
-        campoFantasia = createCheckbox("Gosta de fantasia?").parent(document.querySelector('.box'));
-        createElement("br").parent(document.querySelector('.box')); // Quebra de linha
-        campoAventura = createCheckbox("Gosta de aventura?").parent(document.querySelector('.box'));
-
-        // Criando o iframe onde o jogo será exibido
-        iframeElement = createElement('iframe');
-        iframeElement.attribute("allowtransparency", "true");
-        iframeElement.attribute("frameborder", "0");
-        iframeElement.attribute("scrolling", "no");
-        iframeElement.attribute("allowfullscreen", "true");
-        iframeElement.size(485, 402);
-        iframeElement.parent(document.querySelector('.box'));
-
-        // Criando uma div para exibir mensagens
-        messageBox = createDiv().parent(document.querySelector('.box'));
-        messageBox.class('message-box'); // Estilo para a div de mensagem
-
-        // Criando o botão reset
-        createButton('Reset').parent(document.querySelector('.box')).mousePressed(resetApp);
-      }
-
-      function draw() {
-        if (!jogoCarregado) {
-          let idade = campoIdade.value(); // Pega a idade do input
-          geraRecomendacao(idade); // Chama a função que decide o jogo ou mensagem
-        }
-      }
-
+      const gameIframe = document.getElementById('gameIframe');
+      const idadeInput = document.getElementById('idadeInput');
+      const statusMessage = document.getElementById('statusMessage');
+      const resetButton = document.getElementById('resetButton');
+      
+      // Mantém o iframe escondido inicialmente
+      gameIframe.classList.add('hidden');
+      
+      // Função para exibir o jogo com base na idade
       function geraRecomendacao(idade) {
-        if (idade == 15 && !jogoCarregado) {
-          let linkJogo = "https://scratch.mit.edu/projects/65710744/embed";
-          iframeElement.attribute("src", linkJogo);
-          messageBox.html("Bom jogo"); // Exibe a mensagem "Bom jogo"
-          jogoCarregado = true; // Marca como jogo carregado
-        } else if (!jogoCarregado) {
-          iframeElement.attribute("src", ""); // Limpa o iframe
-          messageBox.html("Em construção"); // Exibe a mensagem "Em construção"
+        if (idade == 15) {
+          gameIframe.src = "https://scratch.mit.edu/projects/65710744/embed";
+          gameIframe.classList.remove('hidden');
+          statusMessage.textContent = "Bom jogo!";
+        } else if (idade == 14) {
+          gameIframe.src = "https://scratch.mit.edu/projects/712511942/embed";
+          gameIframe.classList.remove('hidden');
+          statusMessage.textContent = "Bom jogo!";
+        } else {
+          gameIframe.classList.add('hidden');
+          statusMessage.textContent = "Em construção";
         }
       }
 
-      function geraRecomendacao(idade) {
-        if (idade == 14 && !jogoCarregado) {
-          let linkJogo = "https://scratch.mit.edu/projects/712511942/embed";
-          iframeElement.attribute("src", linkJogo);
-          messageBox.html("Bom jogo"); // Exibe a mensagem "Bom jogo"
-          jogoCarregado = true; // Marca como jogo carregado
-        } else if (!jogoCarregado) {
-          iframeElement.attribute("src", ""); // Limpa o iframe
-          messageBox.html("Em construção"); // Exibe a mensagem "Em construção"
-        }
-      }
+      // Detecta mudanças no campo de idade
+      idadeInput.addEventListener('input', function() {
+        geraRecomendacao(idadeInput.value);
+        idadeInput.disabled = true;  // Bloqueia a edição após a primeira escolha
+      });
 
-      function resetApp() {
-        // Libera a troca de idade e redefine a aplicação
-        jogoCarregado = false;
-        iframeElement.attribute("src", ""); // Limpa o iframe
-        messageBox.html("Escolha uma idade novamente"); // Mensagem de reset
-      }
+      // Botão de reset para liberar a troca de idade
+      resetButton.addEventListener('click', function() {
+        gameIframe.src = "";
+        statusMessage.textContent = "Em construção";
+        idadeInput.disabled = false; // Libera o campo para alteração
+      });
     </script>
   </div>
 </body>
