@@ -1,107 +1,62 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Recomendador de Jogos</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
-  <style>
-    .box {
-      width: 800px;
-      margin: 20px auto;
-      padding: 20px;
-      border: 2px solid #4c0073;
-      border-radius: 10px;
-      background-color: #f4f4f4;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-      text-align: center;
-    }
-
-    h2 {
-      color: #4c0073;
-      font-size: 25px;
-    }
-
-    span, input, label {
-      font-size: 18px;
-      margin: 10px;
-      color: #333;
-    }
-
-    .input-container {
-      display: inline-block;
-    }
-
-    iframe {
-      margin-top: 20px;
-      border: 2px solid #4c0073;
-      border-radius: 10px;
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    button {
-      margin-left: 10px;
-    }
-  </style>
+  <title>Meu Site com Abas</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="box">
-    <h2>Recomendador de Jogos</h2>
-    
-    <div class="input-container">
-      <span>Sua idade:</span>
-      <input id="idadeInput" type="number" value="5" />
-      <button id="resetButton">Reset</button>
-    </div>
 
-    <!-- Iframe para exibir o jogo -->
-    <iframe id="gameIframe" width="485" height="402" allowtransparency="true" frameborder="0" scrolling="no" allowfullscreen></iframe>
-    <p id="statusMessage">Em construção</p>
+<div class="tab">
+  <button class="tablinks" onclick="openTab(event, 'Texto')">Texto</button>
+  <button class="tablinks" onclick="openTab(event, 'Vídeo')">Vídeo</button>
+</div>
 
-    <script>
-      const gameIframe = document.getElementById('gameIframe');
-      const idadeInput = document.getElementById('idadeInput');
-      const statusMessage = document.getElementById('statusMessage');
-      const resetButton = document.getElementById('resetButton');
+<div id="Texto" class="tabcontent">
+  <p>Este é o conteúdo da aba de texto.</p>
+</div>
 
-      // Mantém o iframe escondido inicialmente
-      gameIframe.classList.add('hidden');
+<div id="Vídeo" class="tabcontent">
+    <iframe width="560" height="315" src="<iframe width="560" height="315" src="https://www.youtube.com/embed/Av5YeL-RrVA?si=2bxKNJR4Lv8-kBJq" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+<div id="Vídeo" class="tabcontent">
+  <iframe width="560" height="315" src="<iframe width="560" height="315" src="https://www.youtube.com/embed/ttDbSrXnCH4?si=-zgMSQqDaw7R5NbL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+<div id="Vídeo" class="tabcontent">
+  <iframe width="560" height="315" src="<iframe width="560" height="315" src="https://www.youtube.com/embed/nA8wHQvHPJU?si=merHW9nlNBfw6Oz8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+<div id="Vídeo" class="tabcontent">
+  <iframe width="560" height="315" src="<iframe width="560" height="315" src="https://www.youtube.com/embed/wdXa2-DFb94?si=DFtb8oDjOzX-DCdA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+<div id="Vídeo" class="tabcontent">
+  <iframe width="560" height="315" src="<iframe width="560" height="315" src="https://www.youtube.com/embed/Lr9ANLJA_h0?si=WTMzGeZ68JFkQkE8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+<div id="Vídeo" class="tabcontent">
+  <iframe width="560" height="315" src="<iframe width="560" height="315" src="https://www.youtube.com/embed/ojwU1qDhBj0?si=lPMy-DzGrPxBJj94" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+<div id="Vídeo" class="tabcontent">
+  <iframe width="560" height="315" src="<iframe width="560" height="315" src="https://www.youtube.com/embed/F5rDWCa3tYA?si=4emiv9GteBhuQW1U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+<div id="Vídeo" class="tabcontent">
+  <iframe width="560" height="315" src="<iframe width="560" height="315" src="https://www.youtube.com/embed/pbsNA_6b8tM?si=NwXoO3IRfIKUgQ-M" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+<div id="Vídeo" class="tabcontent">
+  <iframe width="560" height="315" src="<iframe width="560" height="315" src="https://www.youtube.com/embed/mMqWHyaiLjw?si=iJEqTmPMy6sUZI6u" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+<script>
+function openTab(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+</script>
 
-      // Função para exibir o jogo com base na idade
-      function geraRecomendacao(idade) {
-        if (idade == 14) {
-          gameIframe.src = "https://scratch.mit.edu/projects/1073615209/embed";
-          gameIframe.classList.remove('hidden');
-          statusMessage.textContent = "Bom jogo!";
-        } else if (idade == 16) {
-          gameIframe.src = "https://scratch.mit.edu/projects/712511942/embed";
-          gameIframe.classList.remove('hidden');
-          statusMessage.textContent = "Bom jogo!";
-        } else {
-          gameIframe.classList.add('hidden');
-          statusMessage.textContent = "Em construção";
-        }
-      }
-
-      // Detecta o pressionamento da tecla Enter no campo de idade
-      idadeInput.addEventListener('keydown', function(event) {
-        if (event.key === 'Enter') {
-          geraRecomendacao(idadeInput.value);
-          idadeInput.disabled = true; // Bloqueia a edição após a escolha
-        }
-      });
-
-      // Botão de reset para liberar a troca de idade
-      resetButton.addEventListener('click', function() {
-        gameIframe.src = "";
-        statusMessage.textContent = "Em construção";
-        idadeInput.disabled = false; // Libera o campo para alteração
-      });
-    </script>
-  </div>
 </body>
 </html>
-
